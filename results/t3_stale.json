@@ -1,0 +1,2646 @@
+[
+  {
+    "policy": "fcfs",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 535,
+    "completed_per_s": 4.458333333333333,
+    "in_flight_at_horizon": 43,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07472800000198276,
+    "ttft_p99_s": 2.6599700000027013,
+    "ttft_p99_by_tenant": {
+      "steady": 2.6599700000027013
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 299,
+      "w1": 279
+    },
+    "routing_imbalance": 0.03460207612456748,
+    "kv_block_seconds_by_worker": {
+      "w0": 356073.03950000764,
+      "w1": 320299.64945001283
+    },
+    "kv_block_seconds": 676372.6889500205,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4810,
+      "w1": 3821
+    },
+    "peak_blocks": 8631,
+    "prefill_tokens": 574888,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/random/fresh"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 535,
+    "completed_per_s": 4.458333333333333,
+    "in_flight_at_horizon": 43,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07472800000198276,
+    "ttft_p99_s": 2.6599700000027013,
+    "ttft_p99_by_tenant": {
+      "steady": 2.6599700000027013
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 299,
+      "w1": 279
+    },
+    "routing_imbalance": 0.03460207612456748,
+    "kv_block_seconds_by_worker": {
+      "w0": 356073.03950000764,
+      "w1": 320299.64945001283
+    },
+    "kv_block_seconds": 676372.6889500205,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4810,
+      "w1": 3821
+    },
+    "peak_blocks": 8631,
+    "prefill_tokens": 574888,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/random/stale_hidden"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/random/stale_honest"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 290,
+      "w1": 288
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 336788.2309500159,
+      "w1": 335191.01065000857
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4298,
+      "w1": 4459
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/least_loaded/fresh"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 531,
+    "completed_per_s": 4.425,
+    "in_flight_at_horizon": 47,
+    "steps": 35098,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 1.4952340000029096,
+    "ttft_p99_s": 8.166284000000548,
+    "ttft_p99_by_tenant": {
+      "steady": 8.166284000000548
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345806.76550000935,
+      "w1": 404083.4142000154
+    },
+    "kv_block_seconds": 749890.1797000248,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5798,
+      "w1": 5829
+    },
+    "peak_blocks": 11627,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/least_loaded/stale_hidden"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/least_loaded/stale_honest"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 288,
+      "w1": 290
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 335191.01065000857,
+      "w1": 336788.2309500159
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4459,
+      "w1": 4298
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/p2c/fresh"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 528,
+    "completed_per_s": 4.4,
+    "in_flight_at_horizon": 50,
+    "steps": 35034,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.5877300000028214,
+    "ttft_p99_s": 7.307661000000492,
+    "ttft_p99_by_tenant": {
+      "steady": 7.307661000000492
+    },
+    "ttft_n_by_tenant": {
+      "steady": 576
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345054.4557500115,
+      "w1": 401063.67445001076
+    },
+    "kv_block_seconds": 746118.1302000222,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5662,
+      "w1": 5703
+    },
+    "peak_blocks": 11365,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/p2c/stale_hidden"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/p2c/stale_honest"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 290,
+      "w1": 288
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 336788.2309500159,
+      "w1": 335191.01065000857
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4298,
+      "w1": 4459
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/prefix_then_load/fresh"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 531,
+    "completed_per_s": 4.425,
+    "in_flight_at_horizon": 47,
+    "steps": 35098,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 1.4952340000029096,
+    "ttft_p99_s": 8.166284000000548,
+    "ttft_p99_by_tenant": {
+      "steady": 8.166284000000548
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345806.76550000935,
+      "w1": 404083.4142000154
+    },
+    "kv_block_seconds": 749890.1797000248,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5798,
+      "w1": 5829
+    },
+    "peak_blocks": 11627,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/prefix_then_load/stale_hidden"
+  },
+  {
+    "policy": "fcfs",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "fcfs/prefix_then_load/stale_honest"
+  },
+  {
+    "policy": "priority",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 535,
+    "completed_per_s": 4.458333333333333,
+    "in_flight_at_horizon": 43,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07472800000198276,
+    "ttft_p99_s": 2.6599700000027013,
+    "ttft_p99_by_tenant": {
+      "steady": 2.6599700000027013
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 299,
+      "w1": 279
+    },
+    "routing_imbalance": 0.03460207612456748,
+    "kv_block_seconds_by_worker": {
+      "w0": 356073.03950000764,
+      "w1": 320299.64945001283
+    },
+    "kv_block_seconds": 676372.6889500205,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4810,
+      "w1": 3821
+    },
+    "peak_blocks": 8631,
+    "prefill_tokens": 574888,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/random/fresh"
+  },
+  {
+    "policy": "priority",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 535,
+    "completed_per_s": 4.458333333333333,
+    "in_flight_at_horizon": 43,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07472800000198276,
+    "ttft_p99_s": 2.6599700000027013,
+    "ttft_p99_by_tenant": {
+      "steady": 2.6599700000027013
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 299,
+      "w1": 279
+    },
+    "routing_imbalance": 0.03460207612456748,
+    "kv_block_seconds_by_worker": {
+      "w0": 356073.03950000764,
+      "w1": 320299.64945001283
+    },
+    "kv_block_seconds": 676372.6889500205,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4810,
+      "w1": 3821
+    },
+    "peak_blocks": 8631,
+    "prefill_tokens": 574888,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/random/stale_hidden"
+  },
+  {
+    "policy": "priority",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/random/stale_honest"
+  },
+  {
+    "policy": "priority",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 290,
+      "w1": 288
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 336788.2309500159,
+      "w1": 335191.01065000857
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4298,
+      "w1": 4459
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/least_loaded/fresh"
+  },
+  {
+    "policy": "priority",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 531,
+    "completed_per_s": 4.425,
+    "in_flight_at_horizon": 47,
+    "steps": 35098,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 1.4952340000029096,
+    "ttft_p99_s": 8.166284000000548,
+    "ttft_p99_by_tenant": {
+      "steady": 8.166284000000548
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345806.76550000935,
+      "w1": 404083.4142000154
+    },
+    "kv_block_seconds": 749890.1797000248,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5798,
+      "w1": 5829
+    },
+    "peak_blocks": 11627,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/least_loaded/stale_hidden"
+  },
+  {
+    "policy": "priority",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/least_loaded/stale_honest"
+  },
+  {
+    "policy": "priority",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 288,
+      "w1": 290
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 335191.01065000857,
+      "w1": 336788.2309500159
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4459,
+      "w1": 4298
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/p2c/fresh"
+  },
+  {
+    "policy": "priority",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 528,
+    "completed_per_s": 4.4,
+    "in_flight_at_horizon": 50,
+    "steps": 35034,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.5877300000028214,
+    "ttft_p99_s": 7.307661000000492,
+    "ttft_p99_by_tenant": {
+      "steady": 7.307661000000492
+    },
+    "ttft_n_by_tenant": {
+      "steady": 576
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345054.4557500115,
+      "w1": 401063.67445001076
+    },
+    "kv_block_seconds": 746118.1302000222,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5662,
+      "w1": 5703
+    },
+    "peak_blocks": 11365,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/p2c/stale_hidden"
+  },
+  {
+    "policy": "priority",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/p2c/stale_honest"
+  },
+  {
+    "policy": "priority",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 290,
+      "w1": 288
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 336788.2309500159,
+      "w1": 335191.01065000857
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4298,
+      "w1": 4459
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/prefix_then_load/fresh"
+  },
+  {
+    "policy": "priority",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 531,
+    "completed_per_s": 4.425,
+    "in_flight_at_horizon": 47,
+    "steps": 35098,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 1.4952340000029096,
+    "ttft_p99_s": 8.166284000000548,
+    "ttft_p99_by_tenant": {
+      "steady": 8.166284000000548
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345806.76550000935,
+      "w1": 404083.4142000154
+    },
+    "kv_block_seconds": 749890.1797000248,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5798,
+      "w1": 5829
+    },
+    "peak_blocks": 11627,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/prefix_then_load/stale_hidden"
+  },
+  {
+    "policy": "priority",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "priority/prefix_then_load/stale_honest"
+  },
+  {
+    "policy": "drr",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 535,
+    "completed_per_s": 4.458333333333333,
+    "in_flight_at_horizon": 43,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07472800000198276,
+    "ttft_p99_s": 2.6599700000027013,
+    "ttft_p99_by_tenant": {
+      "steady": 2.6599700000027013
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 299,
+      "w1": 279
+    },
+    "routing_imbalance": 0.03460207612456748,
+    "kv_block_seconds_by_worker": {
+      "w0": 356073.03950000764,
+      "w1": 320299.64945001283
+    },
+    "kv_block_seconds": 676372.6889500205,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4810,
+      "w1": 3821
+    },
+    "peak_blocks": 8631,
+    "prefill_tokens": 574888,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/random/fresh"
+  },
+  {
+    "policy": "drr",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 535,
+    "completed_per_s": 4.458333333333333,
+    "in_flight_at_horizon": 43,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07472800000198276,
+    "ttft_p99_s": 2.6599700000027013,
+    "ttft_p99_by_tenant": {
+      "steady": 2.6599700000027013
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 299,
+      "w1": 279
+    },
+    "routing_imbalance": 0.03460207612456748,
+    "kv_block_seconds_by_worker": {
+      "w0": 356073.03950000764,
+      "w1": 320299.64945001283
+    },
+    "kv_block_seconds": 676372.6889500205,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4810,
+      "w1": 3821
+    },
+    "peak_blocks": 8631,
+    "prefill_tokens": 574888,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/random/stale_hidden"
+  },
+  {
+    "policy": "drr",
+    "strategy": "random",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/random/stale_honest"
+  },
+  {
+    "policy": "drr",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 290,
+      "w1": 288
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 336788.2309500159,
+      "w1": 335191.01065000857
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4298,
+      "w1": 4459
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/least_loaded/fresh"
+  },
+  {
+    "policy": "drr",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 531,
+    "completed_per_s": 4.425,
+    "in_flight_at_horizon": 47,
+    "steps": 35098,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 1.4952340000029096,
+    "ttft_p99_s": 8.166284000000548,
+    "ttft_p99_by_tenant": {
+      "steady": 8.166284000000548
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345806.76550000935,
+      "w1": 404083.4142000154
+    },
+    "kv_block_seconds": 749890.1797000248,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5798,
+      "w1": 5829
+    },
+    "peak_blocks": 11627,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/least_loaded/stale_hidden"
+  },
+  {
+    "policy": "drr",
+    "strategy": "least_loaded",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/least_loaded/stale_honest"
+  },
+  {
+    "policy": "drr",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 288,
+      "w1": 290
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 335191.01065000857,
+      "w1": 336788.2309500159
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4459,
+      "w1": 4298
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/p2c/fresh"
+  },
+  {
+    "policy": "drr",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 528,
+    "completed_per_s": 4.4,
+    "in_flight_at_horizon": 50,
+    "steps": 35034,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.5877300000028214,
+    "ttft_p99_s": 7.307661000000492,
+    "ttft_p99_by_tenant": {
+      "steady": 7.307661000000492
+    },
+    "ttft_n_by_tenant": {
+      "steady": 576
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345054.4557500115,
+      "w1": 401063.67445001076
+    },
+    "kv_block_seconds": 746118.1302000222,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5662,
+      "w1": 5703
+    },
+    "peak_blocks": 11365,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/p2c/stale_hidden"
+  },
+  {
+    "policy": "drr",
+    "strategy": "p2c",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/p2c/stale_honest"
+  },
+  {
+    "policy": "drr",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 536,
+    "completed_per_s": 4.466666666666667,
+    "in_flight_at_horizon": 42,
+    "steps": 35116,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07246400000194342,
+    "ttft_p99_s": 1.211399000002757,
+    "ttft_p99_by_tenant": {
+      "steady": 1.211399000002757
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 290,
+      "w1": 288
+    },
+    "routing_imbalance": 0.0034602076124567475,
+    "kv_block_seconds_by_worker": {
+      "w0": 336788.2309500159,
+      "w1": 335191.01065000857
+    },
+    "kv_block_seconds": 671979.2416000245,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4298,
+      "w1": 4459
+    },
+    "peak_blocks": 8757,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/prefix_then_load/fresh"
+  },
+  {
+    "policy": "drr",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 578,
+    "completed": 531,
+    "completed_per_s": 4.425,
+    "in_flight_at_horizon": 47,
+    "steps": 35098,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 1.4952340000029096,
+    "ttft_p99_s": 8.166284000000548,
+    "ttft_p99_by_tenant": {
+      "steady": 8.166284000000548
+    },
+    "ttft_n_by_tenant": {
+      "steady": 577
+    },
+    "routed_by_worker": {
+      "w0": 269,
+      "w1": 309
+    },
+    "routing_imbalance": 0.06920415224913495,
+    "kv_block_seconds_by_worker": {
+      "w0": 345806.76550000935,
+      "w1": 404083.4142000154
+    },
+    "kv_block_seconds": 749890.1797000248,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5798,
+      "w1": 5829
+    },
+    "peak_blocks": 11627,
+    "prefill_tokens": 575903,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/prefix_then_load/stale_hidden"
+  },
+  {
+    "policy": "drr",
+    "strategy": "prefix_then_load",
+    "workers": 2,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 578,
+    "admitted": 408,
+    "completed": 320,
+    "completed_per_s": 2.6666666666666665,
+    "in_flight_at_horizon": 88,
+    "steps": 16613,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 170,
+    "rejected_by_code": {
+      "503": 170
+    },
+    "shed_by_router": 170,
+    "shed_pct": 29.41176470588235,
+    "ttft_p50_s": 18.651140000001316,
+    "ttft_p99_s": 23.351694000003008,
+    "ttft_p99_by_tenant": {
+      "steady": 23.351694000003008
+    },
+    "ttft_n_by_tenant": {
+      "steady": 352
+    },
+    "routed_by_worker": {
+      "w0": 408,
+      "w1": 0
+    },
+    "routing_imbalance": 1.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 796911.7618500264,
+      "w1": 0.0
+    },
+    "kv_block_seconds": 796911.7618500264,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8000,
+      "w1": 0
+    },
+    "peak_blocks": 8000,
+    "prefill_tokens": 404351,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3",
+    "arm": "drr/prefix_then_load/stale_honest"
+  },
+  {
+    "policy": "drr",
+    "strategy": "random",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2019,
+    "completed_per_s": 16.825,
+    "in_flight_at_horizon": 178,
+    "steps": 140967,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.0735700000004158,
+    "ttft_p99_s": 2.3507500000007653,
+    "ttft_p99_by_tenant": {
+      "steady": 2.3507500000007653
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2197
+    },
+    "routed_by_worker": {
+      "w0": 293,
+      "w1": 274,
+      "w2": 268,
+      "w3": 279,
+      "w4": 280,
+      "w5": 256,
+      "w6": 274,
+      "w7": 273
+    },
+    "routing_imbalance": 0.016841147018661812,
+    "kv_block_seconds_by_worker": {
+      "w0": 365825.42875002295,
+      "w1": 323416.66920000606,
+      "w2": 307421.3464000082,
+      "w3": 318428.88155000604,
+      "w4": 321155.97380000853,
+      "w5": 288392.58350001386,
+      "w6": 316728.2393999961,
+      "w7": 294855.90675002016
+    },
+    "kv_block_seconds": 2536225.029350082,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4856,
+      "w1": 3820,
+      "w2": 4362,
+      "w3": 4165,
+      "w4": 4819,
+      "w5": 3815,
+      "w6": 4011,
+      "w7": 4329
+    },
+    "peak_blocks": 34177,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/random/fresh/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "random",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2019,
+    "completed_per_s": 16.825,
+    "in_flight_at_horizon": 178,
+    "steps": 140967,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.0735700000004158,
+    "ttft_p99_s": 2.3507500000007653,
+    "ttft_p99_by_tenant": {
+      "steady": 2.3507500000007653
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2197
+    },
+    "routed_by_worker": {
+      "w0": 293,
+      "w1": 274,
+      "w2": 268,
+      "w3": 279,
+      "w4": 280,
+      "w5": 256,
+      "w6": 274,
+      "w7": 273
+    },
+    "routing_imbalance": 0.016841147018661812,
+    "kv_block_seconds_by_worker": {
+      "w0": 365825.42875002295,
+      "w1": 323416.66920000606,
+      "w2": 307421.3464000082,
+      "w3": 318428.88155000604,
+      "w4": 321155.97380000853,
+      "w5": 288392.58350001386,
+      "w6": 316728.2393999961,
+      "w7": 294855.90675002016
+    },
+    "kv_block_seconds": 2536225.029350082,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4856,
+      "w1": 3820,
+      "w2": 4362,
+      "w3": 4165,
+      "w4": 4819,
+      "w5": 3815,
+      "w6": 4011,
+      "w7": 4329
+    },
+    "peak_blocks": 34177,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/random/stale_hidden/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "random",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2001,
+    "completed_per_s": 16.675,
+    "in_flight_at_horizon": 196,
+    "steps": 121443,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.09081400000134465,
+    "ttft_p99_s": 3.755464000000817,
+    "ttft_p99_by_tenant": {
+      "steady": 3.755464000000817
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2183
+    },
+    "routed_by_worker": {
+      "w0": 353,
+      "w1": 0,
+      "w2": 333,
+      "w3": 314,
+      "w4": 315,
+      "w5": 291,
+      "w6": 300,
+      "w7": 291
+    },
+    "routing_imbalance": 0.16067364588074648,
+    "kv_block_seconds_by_worker": {
+      "w0": 426407.51735001476,
+      "w1": 0.0,
+      "w2": 392688.01970000874,
+      "w3": 398679.79695000977,
+      "w4": 397529.55435000785,
+      "w5": 353190.81264999986,
+      "w6": 334866.92550001194,
+      "w7": 325062.5023500153
+    },
+    "kv_block_seconds": 2628425.128850068,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 5300,
+      "w1": 0,
+      "w2": 4913,
+      "w3": 5042,
+      "w4": 4908,
+      "w5": 5206,
+      "w6": 4617,
+      "w7": 4409
+    },
+    "peak_blocks": 34395,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/random/stale_honest/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "least_loaded",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2022,
+    "completed_per_s": 16.85,
+    "in_flight_at_horizon": 175,
+    "steps": 141393,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.06890200000142244,
+    "ttft_p99_s": 0.14862700000151108,
+    "ttft_p99_by_tenant": {
+      "steady": 0.14862700000151108
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2197
+    },
+    "routed_by_worker": {
+      "w0": 285,
+      "w1": 267,
+      "w2": 271,
+      "w3": 281,
+      "w4": 278,
+      "w5": 272,
+      "w6": 275,
+      "w7": 268
+    },
+    "routing_imbalance": 0.008192990441511151,
+    "kv_block_seconds_by_worker": {
+      "w0": 312524.5876500033,
+      "w1": 314952.1687000175,
+      "w2": 315541.64685001574,
+      "w3": 311830.68930002017,
+      "w4": 310067.5724000086,
+      "w5": 315270.35350000765,
+      "w6": 317109.5361500097,
+      "w7": 316932.80155000516
+    },
+    "kv_block_seconds": 2514229.356100088,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 3665,
+      "w1": 3547,
+      "w2": 3621,
+      "w3": 3446,
+      "w4": 3613,
+      "w5": 3578,
+      "w6": 3745,
+      "w7": 3573
+    },
+    "peak_blocks": 28788,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/least_loaded/fresh/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "least_loaded",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 1855,
+    "completed": 1559,
+    "completed_per_s": 12.991666666666667,
+    "in_flight_at_horizon": 296,
+    "steps": 117778,
+    "preempts": 1537,
+    "preempts_per_s": 12.808333333333334,
+    "wasted_decode_tokens": 0,
+    "rejected": 342,
+    "rejected_by_code": {
+      "503": 342
+    },
+    "shed_by_router": 0,
+    "shed_pct": 15.566681838871189,
+    "ttft_p50_s": 0.07098200000235977,
+    "ttft_p99_s": 65.2368540000005,
+    "ttft_p99_by_tenant": {
+      "steady": 65.2368540000005
+    },
+    "ttft_n_by_tenant": {
+      "steady": 1756
+    },
+    "routed_by_worker": {
+      "w0": 235,
+      "w1": 247,
+      "w2": 230,
+      "w3": 226,
+      "w4": 228,
+      "w5": 231,
+      "w6": 224,
+      "w7": 234
+    },
+    "routing_imbalance": 0.012398921832884097,
+    "kv_block_seconds_by_worker": {
+      "w0": 256276.13129999736,
+      "w1": 754636.4468000105,
+      "w2": 260129.2949000001,
+      "w3": 258144.64055000903,
+      "w4": 259866.18205000536,
+      "w5": 256132.90245000433,
+      "w6": 263266.9642500103,
+      "w7": 258850.9165000098
+    },
+    "kv_block_seconds": 2567303.4788000467,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 3648,
+      "w1": 8192,
+      "w2": 3715,
+      "w3": 3984,
+      "w4": 3811,
+      "w5": 3790,
+      "w6": 3871,
+      "w7": 3621
+    },
+    "peak_blocks": 34632,
+    "prefill_tokens": 2966432,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/least_loaded/stale_hidden/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "least_loaded",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2018,
+    "completed_per_s": 16.816666666666666,
+    "in_flight_at_horizon": 179,
+    "steps": 121459,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07296900000160633,
+    "ttft_p99_s": 0.8197180000031068,
+    "ttft_p99_by_tenant": {
+      "steady": 0.8197180000031068
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2197
+    },
+    "routed_by_worker": {
+      "w0": 317,
+      "w1": 0,
+      "w2": 325,
+      "w3": 314,
+      "w4": 315,
+      "w5": 309,
+      "w6": 306,
+      "w7": 311
+    },
+    "routing_imbalance": 0.14792899408284024,
+    "kv_block_seconds_by_worker": {
+      "w0": 365024.8367500155,
+      "w1": 0.0,
+      "w2": 357901.54375001515,
+      "w3": 369395.1158000087,
+      "w4": 365317.27565001923,
+      "w5": 367359.3085000242,
+      "w6": 372531.8894000125,
+      "w7": 365666.32485001767
+    },
+    "kv_block_seconds": 2563196.294700113,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4395,
+      "w1": 0,
+      "w2": 4288,
+      "w3": 4187,
+      "w4": 4158,
+      "w5": 4030,
+      "w6": 4182,
+      "w7": 3993
+    },
+    "peak_blocks": 29233,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/least_loaded/stale_honest/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "p2c",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2021,
+    "completed_per_s": 16.841666666666665,
+    "in_flight_at_horizon": 176,
+    "steps": 141305,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07100800000276308,
+    "ttft_p99_s": 0.1625750000030024,
+    "ttft_p99_by_tenant": {
+      "steady": 0.1625750000030024
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2197
+    },
+    "routed_by_worker": {
+      "w0": 273,
+      "w1": 271,
+      "w2": 275,
+      "w3": 286,
+      "w4": 272,
+      "w5": 274,
+      "w6": 271,
+      "w7": 275
+    },
+    "routing_imbalance": 0.006827492034592627,
+    "kv_block_seconds_by_worker": {
+      "w0": 314201.5548500142,
+      "w1": 315110.3808000131,
+      "w2": 312868.1691500126,
+      "w3": 310304.1471500097,
+      "w4": 323753.82595001906,
+      "w5": 311327.5291499943,
+      "w6": 310083.7920500053,
+      "w7": 316270.5447500191
+    },
+    "kv_block_seconds": 2513919.9438500875,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 3876,
+      "w1": 3678,
+      "w2": 3726,
+      "w3": 3621,
+      "w4": 3783,
+      "w5": 3802,
+      "w6": 3757,
+      "w7": 3790
+    },
+    "peak_blocks": 30033,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/p2c/fresh/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "p2c",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 1996,
+    "completed_per_s": 16.633333333333333,
+    "in_flight_at_horizon": 201,
+    "steps": 139617,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07385900000251411,
+    "ttft_p99_s": 9.301291000000418,
+    "ttft_p99_by_tenant": {
+      "steady": 9.301291000000418
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2195
+    },
+    "routed_by_worker": {
+      "w0": 276,
+      "w1": 272,
+      "w2": 278,
+      "w3": 288,
+      "w4": 270,
+      "w5": 268,
+      "w6": 267,
+      "w7": 278
+    },
+    "routing_imbalance": 0.009558488848429678,
+    "kv_block_seconds_by_worker": {
+      "w0": 316902.1426000099,
+      "w1": 385168.9414000081,
+      "w2": 307898.38105001877,
+      "w3": 308460.3778000228,
+      "w4": 319936.57300001034,
+      "w5": 316053.86125000357,
+      "w6": 304812.25835001667,
+      "w7": 311098.6860500215
+    },
+    "kv_block_seconds": 2570331.2215001117,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 3811,
+      "w1": 6548,
+      "w2": 3774,
+      "w3": 3961,
+      "w4": 3956,
+      "w5": 3900,
+      "w6": 4109,
+      "w7": 3831
+    },
+    "peak_blocks": 33890,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/p2c/stale_hidden/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "p2c",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2017,
+    "completed_per_s": 16.808333333333334,
+    "in_flight_at_horizon": 180,
+    "steps": 121379,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07324900000362788,
+    "ttft_p99_s": 1.124282000002907,
+    "ttft_p99_by_tenant": {
+      "steady": 1.124282000002907
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2197
+    },
+    "routed_by_worker": {
+      "w0": 317,
+      "w1": 0,
+      "w2": 319,
+      "w3": 313,
+      "w4": 306,
+      "w5": 317,
+      "w6": 316,
+      "w7": 309
+    },
+    "routing_imbalance": 0.14519799726900318,
+    "kv_block_seconds_by_worker": {
+      "w0": 370249.9924000137,
+      "w1": 0.0,
+      "w2": 365795.20350002905,
+      "w3": 366093.86325001443,
+      "w4": 372270.98435001494,
+      "w5": 362806.7629000099,
+      "w6": 363040.2936000096,
+      "w7": 366441.8557000219
+    },
+    "kv_block_seconds": 2566698.9557001134,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4300,
+      "w1": 0,
+      "w2": 3945,
+      "w3": 4174,
+      "w4": 4157,
+      "w5": 4081,
+      "w6": 4407,
+      "w7": 4072
+    },
+    "peak_blocks": 29136,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/p2c/stale_honest/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "prefix_then_load",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2022,
+    "completed_per_s": 16.85,
+    "in_flight_at_horizon": 175,
+    "steps": 141393,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.06890200000142244,
+    "ttft_p99_s": 0.14862700000151108,
+    "ttft_p99_by_tenant": {
+      "steady": 0.14862700000151108
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2197
+    },
+    "routed_by_worker": {
+      "w0": 285,
+      "w1": 267,
+      "w2": 271,
+      "w3": 281,
+      "w4": 278,
+      "w5": 272,
+      "w6": 275,
+      "w7": 268
+    },
+    "routing_imbalance": 0.008192990441511151,
+    "kv_block_seconds_by_worker": {
+      "w0": 312524.5876500033,
+      "w1": 314952.1687000175,
+      "w2": 315541.64685001574,
+      "w3": 311830.68930002017,
+      "w4": 310067.5724000086,
+      "w5": 315270.35350000765,
+      "w6": 317109.5361500097,
+      "w7": 316932.80155000516
+    },
+    "kv_block_seconds": 2514229.356100088,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 3665,
+      "w1": 3547,
+      "w2": 3621,
+      "w3": 3446,
+      "w4": 3613,
+      "w5": 3578,
+      "w6": 3745,
+      "w7": 3573
+    },
+    "peak_blocks": 28788,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/prefix_then_load/fresh/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "prefix_then_load",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s(hidden)",
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 1855,
+    "completed": 1559,
+    "completed_per_s": 12.991666666666667,
+    "in_flight_at_horizon": 296,
+    "steps": 117778,
+    "preempts": 1537,
+    "preempts_per_s": 12.808333333333334,
+    "wasted_decode_tokens": 0,
+    "rejected": 342,
+    "rejected_by_code": {
+      "503": 342
+    },
+    "shed_by_router": 0,
+    "shed_pct": 15.566681838871189,
+    "ttft_p50_s": 0.07098200000235977,
+    "ttft_p99_s": 65.2368540000005,
+    "ttft_p99_by_tenant": {
+      "steady": 65.2368540000005
+    },
+    "ttft_n_by_tenant": {
+      "steady": 1756
+    },
+    "routed_by_worker": {
+      "w0": 235,
+      "w1": 247,
+      "w2": 230,
+      "w3": 226,
+      "w4": 228,
+      "w5": 231,
+      "w6": 224,
+      "w7": 234
+    },
+    "routing_imbalance": 0.012398921832884097,
+    "kv_block_seconds_by_worker": {
+      "w0": 256276.13129999736,
+      "w1": 754636.4468000105,
+      "w2": 260129.2949000001,
+      "w3": 258144.64055000903,
+      "w4": 259866.18205000536,
+      "w5": 256132.90245000433,
+      "w6": 263266.9642500103,
+      "w7": 258850.9165000098
+    },
+    "kv_block_seconds": 2567303.4788000467,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 3648,
+      "w1": 8192,
+      "w2": 3715,
+      "w3": 3984,
+      "w4": 3811,
+      "w5": 3790,
+      "w6": 3871,
+      "w7": 3621
+    },
+    "peak_blocks": 34632,
+    "prefill_tokens": 2966432,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/prefix_then_load/stale_hidden/8w"
+  },
+  {
+    "policy": "drr",
+    "strategy": "prefix_then_load",
+    "workers": 8,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": "w1@15s",
+    "seconds": 120.0,
+    "arrived": 2197,
+    "admitted": 2197,
+    "completed": 2018,
+    "completed_per_s": 16.816666666666666,
+    "in_flight_at_horizon": 179,
+    "steps": 121459,
+    "preempts": 0,
+    "preempts_per_s": 0.0,
+    "wasted_decode_tokens": 0,
+    "rejected": 0,
+    "rejected_by_code": {},
+    "shed_by_router": 0,
+    "shed_pct": 0.0,
+    "ttft_p50_s": 0.07296900000160633,
+    "ttft_p99_s": 0.8197180000031068,
+    "ttft_p99_by_tenant": {
+      "steady": 0.8197180000031068
+    },
+    "ttft_n_by_tenant": {
+      "steady": 2197
+    },
+    "routed_by_worker": {
+      "w0": 317,
+      "w1": 0,
+      "w2": 325,
+      "w3": 314,
+      "w4": 315,
+      "w5": 309,
+      "w6": 306,
+      "w7": 311
+    },
+    "routing_imbalance": 0.14792899408284024,
+    "kv_block_seconds_by_worker": {
+      "w0": 365024.8367500155,
+      "w1": 0.0,
+      "w2": 357901.54375001515,
+      "w3": 369395.1158000087,
+      "w4": 365317.27565001923,
+      "w5": 367359.3085000242,
+      "w6": 372531.8894000125,
+      "w7": 365666.32485001767
+    },
+    "kv_block_seconds": 2563196.294700113,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 4395,
+      "w1": 0,
+      "w2": 4288,
+      "w3": 4187,
+      "w4": 4158,
+      "w5": 4030,
+      "w6": 4182,
+      "w7": 3993
+    },
+    "peak_blocks": 29233,
+    "prefill_tokens": 2197142,
+    "cached_prefill_tokens": 0,
+    "experiment": "t3_fleet_sweep",
+    "arm": "drr/prefix_then_load/stale_honest/8w"
+  }
+]

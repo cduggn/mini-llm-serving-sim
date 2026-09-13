@@ -1,0 +1,161 @@
+[
+  {
+    "policy": "fcfs",
+    "strategy": "least_loaded",
+    "workers": 1,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 60.0,
+    "arrived": 444,
+    "admitted": 249,
+    "completed": 212,
+    "completed_per_s": 3.533333333333333,
+    "in_flight_at_horizon": 37,
+    "steps": 2957,
+    "preempts": 114,
+    "preempts_per_s": 1.9,
+    "wasted_decode_tokens": 158,
+    "rejected": 195,
+    "rejected_by_code": {
+      "503": 195
+    },
+    "shed_by_router": 195,
+    "shed_pct": 43.91891891891892,
+    "ttft_p50_s": 0.27746400000018134,
+    "ttft_p99_s": 11.54238800000018,
+    "ttft_p99_by_tenant": {
+      "agents": 11.54238800000018,
+      "batch": 11.98956100000018,
+      "interactive": 10.988595000000174
+    },
+    "ttft_n_by_tenant": {
+      "agents": 36,
+      "batch": 41,
+      "interactive": 164
+    },
+    "routed_by_worker": {
+      "w0": 249
+    },
+    "routing_imbalance": 0.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 393978.15130000387
+    },
+    "kv_block_seconds": 393978.15130000387,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8192
+    },
+    "peak_blocks": 8192,
+    "prefill_tokens": 844077,
+    "cached_prefill_tokens": 0,
+    "experiment": "part2",
+    "arm": "fcfs"
+  },
+  {
+    "policy": "priority",
+    "strategy": "least_loaded",
+    "workers": 1,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 60.0,
+    "arrived": 444,
+    "admitted": 374,
+    "completed": 342,
+    "completed_per_s": 5.7,
+    "in_flight_at_horizon": 32,
+    "steps": 4630,
+    "preempts": 17,
+    "preempts_per_s": 0.2833333333333333,
+    "wasted_decode_tokens": 125,
+    "rejected": 70,
+    "rejected_by_code": {
+      "503": 70
+    },
+    "shed_by_router": 70,
+    "shed_pct": 15.765765765765765,
+    "ttft_p50_s": 0.13743100000039377,
+    "ttft_p99_s": 4.126162000000223,
+    "ttft_p99_by_tenant": {
+      "agents": 0.7443820000008117,
+      "batch": 6.3332480000005305,
+      "interactive": 0.23994399999999982
+    },
+    "ttft_n_by_tenant": {
+      "agents": 40,
+      "batch": 57,
+      "interactive": 276
+    },
+    "routed_by_worker": {
+      "w0": 374
+    },
+    "routing_imbalance": 0.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 345911.1640500058
+    },
+    "kv_block_seconds": 345911.1640500058,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8192
+    },
+    "peak_blocks": 8192,
+    "prefill_tokens": 643453,
+    "cached_prefill_tokens": 0,
+    "experiment": "part2",
+    "arm": "priority"
+  },
+  {
+    "policy": "drr",
+    "strategy": "least_loaded",
+    "workers": 1,
+    "seed": 7,
+    "prefix_cache": false,
+    "stale": null,
+    "seconds": 60.0,
+    "arrived": 444,
+    "admitted": 375,
+    "completed": 346,
+    "completed_per_s": 5.766666666666667,
+    "in_flight_at_horizon": 29,
+    "steps": 4895,
+    "preempts": 10,
+    "preempts_per_s": 0.16666666666666666,
+    "wasted_decode_tokens": 524,
+    "rejected": 69,
+    "rejected_by_code": {
+      "503": 69
+    },
+    "shed_by_router": 69,
+    "shed_pct": 15.54054054054054,
+    "ttft_p50_s": 0.1853100000009178,
+    "ttft_p99_s": 2.4844320000005737,
+    "ttft_p99_by_tenant": {
+      "agents": 0.966504000000981,
+      "batch": 2.6950120000002062,
+      "interactive": 0.37901800000019037
+    },
+    "ttft_n_by_tenant": {
+      "agents": 42,
+      "batch": 63,
+      "interactive": 270
+    },
+    "routed_by_worker": {
+      "w0": 375
+    },
+    "routing_imbalance": 0.0,
+    "kv_block_seconds_by_worker": {
+      "w0": 349557.7366500068
+    },
+    "kv_block_seconds": 349557.7366500068,
+    "prefix_block_seconds": 0.0,
+    "peak_blocks_by_worker": {
+      "w0": 8192
+    },
+    "peak_blocks": 8192,
+    "prefill_tokens": 612014,
+    "cached_prefill_tokens": 0,
+    "experiment": "part2",
+    "arm": "drr"
+  }
+]
