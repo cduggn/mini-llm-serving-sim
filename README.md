@@ -22,48 +22,52 @@ Python 3.11+. The simulation itself is pure standard library; `pytest` and
 
 ## The request path
 
-Each request goes **route → admit → schedule**. The router picks a worker, the
-admission gate on that worker says yes or no, and the scheduler decides who gets
-the GPU next. Nothing retries and nothing reserves capacity.
+Each request goes **route → admit → schedule**, in that order, and each stage
+owns one decision. Nothing retries and nothing reserves capacity.
 
-```mermaid
-flowchart TD
-    REQ(["request arrives"]) --> R
+**1. `router.py` — which worker?** &nbsp;*(answers Q6, Q7, Q8)*
 
-    subgraph R["router.py — which worker?"]
-        direction TB
-        H6["H6 · _eligible / _is_unknown<br/>an unknown worker is never an idle one<br/><b>Q7</b>"]
-        H4["H4 · _admissible / _would_shed<br/>predict the refusal before dispatch<br/><b>Q8</b>"]
-        STRAT["_choose<br/>random · least_loaded<br/>p2c · prefix_then_load<br/><b>Q6</b>"]
-        H6 --> H4 --> STRAT
-    end
+`pick(req, workers)` returns a `WorkerView` or a `Shed`. Two safety rules run
+first, so by the time a strategy sees the candidate list every worker on it is
+both known and willing, and the strategies have no error cases:
 
-    R -->|Shed| SHED503(["503 · retry_after 2.0s"])
-    R --> A
+- `_eligible` / `_is_unknown` — **H6**, an unknown worker is never treated as an
+  idle one. Unhealthy, stale beyond 5 s, or missing any load signal all count as
+  unknown. If *every* worker is unknown the whole fleet is used anyway, so a
+  monitoring outage cannot become a total outage.
+- `_admissible` / `_would_shed` — **H4**, ask `should_shed` whether this worker
+  *would* accept before dispatching. If none would, refuse once with
+  `Shed(503, retry_after=2.0)` rather than letting the client bounce around a
+  fleet that is already out of room.
+- `_choose` — one of `random`, `least_loaded`, `p2c`, `prefix_then_load`.
 
-    subgraph A["admit.py — should this be accepted?"]
-        direction TB
-        G12["gates 1-2 · _check_allowance<br/>tenant token + request budget<br/><b>Q4</b>"]
-        G3["gate 3 · _check_queue_wait<br/>refuse work that cannot meet its deadline<br/><b>Q1</b>"]
-        G45["gates 4-5 · _check_kv_pressure / _check_kv_capacity<br/>KV headroom, cached prefix exempt<br/><b>Q2 · Q6</b>"]
-        G6["gate 6 · _check_tail_latency<br/>shed batch, keep interactive<br/><b>Q3</b>"]
-        G12 --> G3 --> G45 --> G6
-    end
+**2. `admit.py` — should this be accepted at all?** &nbsp;*(answers Q1–Q4, Q6)*
 
-    A -->|429| QUOTA(["429 · tenant over budget"])
-    A -->|503| CAP(["503 · no capacity"])
-    A --> S
+`should_shed(req, snap)` runs six gates in a fixed order and returns the first
+refusal as `(shed, code, retry_after)`. It says yes or no and nothing else — no
+reserving, no retrying, no routing. Every gate fails closed: a missing signal
+refuses, because an unknown signal is not a healthy one.
 
-    subgraph S["sched.py — who gets the GPU next?"]
-        direction TB
-        SEL["_select_fcfs · _select_priority · _select_drr<br/>one prefill slot per step<br/><b>Q3 · Q4</b>"]
-        KV["_kv_room / _reclaim_blocks<br/>block accounting<br/><b>Q2</b>"]
-        PRE["_preempt · victim by _select_victim<br/>recompute, not swap<br/><b>Q5</b>"]
-        SEL --> KV --> PRE
-    end
+| Gate | Function | Refuses when |
+|---|---|---|
+| 1–2 | `_check_allowance` | tenant is at ≥95% of its token or request budget → `429` |
+| 3 | `_check_queue_wait` | expected queue wait exceeds half the request's deadline → `503` |
+| 4–5 | `_check_kv_pressure`, `_check_kv_capacity` | under 8% free KV and the prefix is cold, or the request simply will not fit → `503` |
+| 6 | `_check_tail_latency` | p99 > 4× p50 *and* the queue is growing → shed batch, keep interactive |
 
-    S --> DONE(["tokens out"])
-```
+**3. `sched.py` — who gets the GPU next?** &nbsp;*(answers Q2–Q5)*
+
+One `step()` is one GPU turn: validate everything before mutating anything, drop
+aborted clients, capture and cap the decoders, reserve each of them a token,
+prefill exactly one prompt, and preempt only if memory demands it.
+
+- `_select_fcfs` / `_select_priority` / `_select_drr` — who takes the single
+  prefill slot this step.
+- `_kv_room`, `_reclaim_blocks` — block accounting; a chunk shrinks to fit before
+  anything is evicted.
+- `_preempt`, victim chosen by `_select_victim` — preemption is **recompute, not
+  swap**, so a victim's generated tokens are gone. The victim rule never evicts
+  anything more important than the requester.
 
 ### The eight questions, and where each is answered
 
@@ -82,17 +86,22 @@ flowchart TD
 
 ## Files
 
-| Path | What it does |
+The three policy modules above are the point of the repo. Everything else exists
+to drive them or to check them.
+
+| Path | Responsible for |
 |---|---|
-| `admit.py` | Six admission gates in a fixed order, first refusal wins. Returns `(shed, code, retry_after)`. Says yes or no and nothing else — no reserving, no retrying, no routing. Fails closed on every missing signal. |
-| `sched.py` | One `step()` is one GPU turn: validate, drop aborts, pick decoders, reserve them a token each, prefill exactly one prompt, preempt only if memory demands it. FCFS / priority / DRR. |
-| `router.py` | `pick(req, workers)` returns a `WorkerView` or a `Shed`. Two safety rules (H6, H4) run before any of the four strategies, so a strategy has no error cases. |
+| `router.py` | Picking a worker, or refusing. H6 and H4, then one of four strategies. |
+| `admit.py` | Saying yes or no to one request. Six gates, first refusal wins, fails closed. |
+| `sched.py` | One GPU turn: chunked prefill, decode, KV blocks, preemption. FCFS / priority / DRR. |
 | `state.py` | The `PendingRequest` shape shared by admission and routing, lifted from the gateway so the same `should_shed` runs against both. |
-| `serve.py` | The harness: a simulated clock, per-worker queues, the admission bridge, metrics. This is what the experiments drive. |
+| `serve.py` | The harness — simulated clock, per-worker queues, the admission bridge, metrics. Defines the simulated hardware. |
 | `experiments.py` | Runs Part 2 and T1/T2/T3, writes `results/*.json` + `*.csv` and the two plots. Re-runs Part 2 first and fails loudly if the published table has moved. |
 | `traces/gen_mixed.py` | Part 2 workload generator — seeded, exact class proportions (interactive / batch / agents). |
 | `traces/gen_router.py` | The three routing workloads: unique prefixes (T1), shared prefix (T2), stale telemetry (T3). |
+| `traces/*.jsonl` | The generated traces themselves, committed so results reproduce without regenerating. |
 | `tests/` | 304 tests. Ordering, chunked prefill, DRR fairness, block accounting, victim selection, all six admission gates against malformed input, H6 across five unknown shapes × four strategies. |
+| `results/`, `plots/` | Output of `make part3` — every number quoted in the report, plus the two figures. |
 | `docs/` | The reasoning behind each module, gate by gate, including the limitations. |
 | `REPORT.pdf` | The two-page write-up of the results. |
 
