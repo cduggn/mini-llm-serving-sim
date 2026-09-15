@@ -1,130 +1,173 @@
 # mini-llm-serving-sim
 
-A simulated LLM serving system: admission control, scheduling and routing, with no
-GPU, no network and no model. Tokens are integers and KV blocks are counters, so a
-run takes about a second and the policy is the only variable.
+A simulated LLM serving system: admission, scheduling and routing.
+
+No GPU, no network, no model. Tokens are integers and KV blocks are counters,
+so a run takes about a second.
 
 ```bash
 make setup && make test
-make part2      # scheduler comparison: FCFS vs priority vs DRR
-make part3      # routing experiments -> results/ and plots/
+make part2      # schedulers: FCFS vs priority vs DRR
+make part3      # routing experiments -> results/, plots/
 ```
 
-Python 3.11+. The simulation is standard library only; `pytest` and `matplotlib`
-are for the tests and plots.
+Python 3.11+.
 
-## Request path
+---
 
+## Flow
+
+`serve.py` runs this loop for every request and owns the clock.
+
+```mermaid
+flowchart TD
+    REQ(["request arrives"]) --> R
+
+    subgraph R["router.py — which worker?"]
+        direction TB
+        H6["H6 · drop unknown workers"]
+        H4["H4 · drop workers that would refuse"]
+        STRAT["strategy<br/>random · least_loaded · p2c · prefix_then_load"]
+        H6 --> H4 --> STRAT
+    end
+
+    R -->|nobody left| SHED(["503 · retry after 2s"])
+    R --> A
+
+    subgraph A["admit.py — accept or refuse?"]
+        direction TB
+        G12["gates 1–2 · tenant budget"]
+        G3["gate 3 · queue wait vs deadline"]
+        G45["gates 4–5 · KV pressure and capacity"]
+        G6["gate 6 · tail latency, shed batch"]
+        G12 --> G3 --> G45 --> G6
+    end
+
+    A -->|429| QUOTA(["429 · over budget"])
+    A -->|503| CAP(["503 · no capacity"])
+    A --> S
+
+    subgraph S["sched.py — who runs this step?"]
+        direction TB
+        SEL["pick prefill · fcfs / priority / drr"]
+        KV["check KV room"]
+        PRE["preempt if needed"]
+        SEL --> KV --> PRE
+    end
+
+    S --> DONE(["tokens out"])
 ```
-trace arrival -> router.pick -> admit.should_shed -> worker queue -> sched.step
-                 (which worker?)  (accept or refuse?)                (who runs next?)
-```
-
-`serve.py` drives the loop. Nothing retries and nothing reserves capacity.
 
 ---
 
 ## Core files
 
-### `serve.py` — the harness
+### serve.py
 
-Replays a trace against one or more workers and records the metrics.
+The harness. Replays a trace and records metrics.
 
-- **Input:** a JSONL trace, one request per line:
-  `id, arrival_t, priority, prompt_tokens, max_new_tokens, prefix_hash, timeout_s, tenant`
-- **Per arrival:** route, then admit, then append to the chosen worker's `waiting` list.
-- **Per step:** the worker whose next step is due earliest runs `sched.step()`.
-  Its clock advances by `0.006 + prefill_tokens / 20,000` seconds.
-- **Outputs:** TTFT per tenant, rejections by code, preemptions, wasted decode tokens, KV block-seconds, requests per worker.
+**Input:** one request per trace line
 
-Simulated hardware: 2,048-token budget per step, 32 decode slots, 8,192 KV blocks of 16 tokens.
+```
+id, arrival_t, priority, prompt_tokens, max_new_tokens, prefix_hash, timeout_s, tenant
+```
 
-### `router.py` — which worker?
+**What it does**
 
-`pick(req, workers, strategy=...)` returns a `WorkerView` or a `Shed(503)`.
+- Routes, admits and queues each arrival.
+- Steps whichever worker is due next.
+- Step time = `0.006 s + prefill_tokens / 20,000`.
 
-- **Input:** `RouteRequest(pending, prefix_hash)` and one `WorkerView` per worker:
-  `healthy, age_s, running, waiting, free_kv_blocks, total_kv_blocks, ttft_p50_s, ttft_p99_s, queue_growing, cached_prefixes`
+**Simulated hardware**
 
-| Check | Refuses / excludes when |
-|---|---|
-| **H6** `_eligible` | worker is unhealthy, telemetry is older than 5 s, or any load signal is missing. If *every* worker is unknown, all are kept (fail open). |
-| **H4** `_admissible` | `should_shed` says this worker would refuse (capacity only, not quota). If none are left: `Shed(503, retry_after=2.0)`. |
-
-Then one strategy picks from the remaining workers:
-
-| Strategy | Picks |
-|---|---|
-| `random` | any worker |
-| `least_loaded` | fewest `running + waiting`, ties broken by more free KV |
-| `p2c` | the less loaded of two workers drawn at random |
-| `prefix_then_load` | the most cached prefix tokens, then least loaded |
-
-### `admit.py` — accept or refuse?
-
-`should_shed(req, snap)` runs the gates in order and returns the first refusal as
-`(shed, code, retry_after)`. Every gate **fails closed**: a missing or invalid signal refuses with `503`.
-
-- **Input:** `PendingRequest` (`n_in`, `n_out`, `deadline_s`, `priority`) and `AdmissionSnapshot`.
-
-| # | Gate | Snapshot inputs | Refuses when |
-|---|---|---|---|
-| 1 | token allowance | `tenant_tokens_used`, `_reserved`, `_limit` | used + reserved ≥ 95% of limit → `429` |
-| 2 | request allowance | `tenant_requests_used`, `_reserved`, `_limit` | used + reserved ≥ 95% of limit → `429` |
-| 3 | queue wait | `queue_length`, `ttft_p50_s` | `queue_length × p50 > 0.5 × deadline_s` → `503` |
-| 4 | KV pressure | `kv_usage`, `cached_prefix_tokens` | KV > 92% used and no cached prefix → `503` |
-| 5 | KV capacity | `free_kv_blocks`, `required_kv_blocks` | required > free → `503` |
-| 6 | tail latency | `queue_growing`, `ttft_p99_s`, `ttft_p50_s` | priority ≥ 10, queue growing and p99 > 4 × p50 → `503` |
-
-Priority < 10 (interactive) is exempt from gate 6 only.
-
-### `sched.py` — who runs next?
-
-`step(waiting, running, budget, policy=..., drr=..., kv=..., decode_slots=...)` simulates one forward pass
-and returns a `StepResult`.
-
-- **Input:** the two queues of `ScheduledRequest`, the token budget, a policy (`fcfs` / `priority` / `drr`),
-  a `DrrState` (DRR only), a `KvPool`, and the decode slot limit.
-
-One step, in order:
-
-1. Drop aborted requests and free their blocks.
-2. Pick decoders (prefill done, output remaining), sorted by policy and capped at `decode_slots`.
-3. Reserve 1 token per decoder; the rest of the budget goes to **one** prefill chunk.
-4. Choose the prefill request: FCFS by arrival, priority by value then arrival, or DRR by tenant credit.
-5. If KV is short, shrink the chunk to fit, preempting only if even one token won't fit.
-6. Advance each decoder by one token, preempting or stalling if no block is free.
-7. Remove finished requests and free their blocks.
-
-| Check | Rule |
-|---|---|
-| KV room `_kv_room` | a request can only hold as many tokens as there are free blocks |
-| Preemption `_select_victim` | lowest priority, latest arrival; never a more important request, never one holding no blocks |
-| Recompute `_preempt` | the victim loses all progress and returns to `waiting`; its tokens count as wasted |
-| DRR credit `_charge` | each tenant earns 2,048 credit per round, is charged after the work runs, and may go into debt |
+- 2,048 tokens per step
+- 32 decode slots
+- 8,192 KV blocks × 16 tokens
 
 ---
 
-## Where each question is answered
+### router.py
 
-| # | Question | Where |
-|---|---|---|
-| Q1 | Avoid accepting work that will time out | `admit` gate 3 |
-| Q2 | Protect KV memory | `admit` gates 4–5; `sched._kv_room`, `_reclaim_blocks` |
-| Q3 | Prioritise interactive traffic | `admit` gate 6; `sched._select_priority`, `_select_victim` |
-| Q4 | Stop one tenant monopolising | `admit` gates 1–2; `sched._select_drr` |
-| Q5 | Preempt a request | `sched._preempt` via `_reclaim_blocks` |
-| Q6 | Exploit shared prefixes | `router._prefix_then_load`; `cached_prefix_tokens` in gate 4 |
-| Q7 | Avoid a worker that has gone quiet | `router` H6 |
-| Q8 | Avoid bouncing a request around the fleet | `router` H4 |
+Picks a worker, or refuses.
 
-## Key findings
+**Input:** the request, plus one `WorkerView` per worker
 
-Full numbers are in [`REPORT.pdf`](REPORT.pdf) and [`docs/part2-findings.md`](docs/part2-findings.md).
+```
+healthy, age_s, running, waiting, free_kv_blocks,
+total_kv_blocks, ttft_p50_s, ttft_p99_s, queue_growing, cached_prefixes
+```
 
-- **DRR preempts least but wastes most:** about 52 decode tokens lost per preemption, against 7 for priority and 1 for FCFS. Preemption is recompute, and DRR lets batch work decode for a long time before it's evicted.
-- **p2c equals least_loaded at 2 workers:** drawing two from two is a full scan, so p2c is compared again at 4 and 8 workers.
-- **H6 hurts at 2 workers and helps at 8:** excluding one stale worker drops half of a 2-worker fleet (p99 23 s, 29% shed) but costs almost nothing at 8 workers.
+**Checks**
+
+| Rule | Removes a worker when |
+|---|---|
+| H6 | unhealthy, stale > 5 s, or a signal is missing |
+| H4 | admission says it would refuse |
+
+- If every worker is unknown, H6 keeps them all.
+- If H4 leaves nobody, return `503`, retry after 2 s.
+
+**Strategies**
+
+| Name | Picks |
+|---|---|
+| `random` | any worker |
+| `least_loaded` | fewest running + waiting |
+| `p2c` | better of two random workers |
+| `prefix_then_load` | most cached prefix, then least loaded |
+
+---
+
+### admit.py
+
+Accepts or refuses one request.
+
+**Input:** `PendingRequest` and `AdmissionSnapshot`
+
+- Gates run in order. The first refusal wins.
+- A missing or invalid signal refuses (`503`).
+
+| # | Gate | Reads | Refuses when |
+|---|---|---|---|
+| 1 | Tokens | tenant tokens used, reserved, limit | ≥ 95% of limit → `429` |
+| 2 | Requests | tenant requests used, reserved, limit | ≥ 95% of limit → `429` |
+| 3 | Queue wait | queue length, p50 TTFT | queue × p50 > half the deadline |
+| 4 | KV pressure | KV usage, cached prefix | > 92% used, no cached prefix |
+| 5 | KV capacity | free blocks, required blocks | required > free |
+| 6 | Tail latency | queue growing, p99, p50 | batch, queue growing, p99 > 4 × p50 |
+
+Interactive requests (priority < 10) skip gate 6.
+
+---
+
+### sched.py
+
+Runs one step on one worker.
+
+**Input**
+
+- `waiting` and `running` queues
+- token budget
+- policy: `fcfs`, `priority` or `drr`
+- KV pool and decode slot limit
+
+**One step**
+
+1. Drop aborted requests.
+2. Pick decoders, up to 32.
+3. Reserve 1 token per decoder.
+4. Give the rest to one prefill chunk.
+5. Advance each decoder by one token.
+6. Remove finished requests.
+
+**Checks**
+
+| Check | Rule |
+|---|---|
+| KV room | a chunk shrinks to fit free blocks |
+| Preemption | evict lowest priority, never a more important request |
+| Recompute | the victim restarts from zero |
+| DRR | 2,048 credit per tenant per round, debt allowed |
 
 ---
 
@@ -132,30 +175,33 @@ Full numbers are in [`REPORT.pdf`](REPORT.pdf) and [`docs/part2-findings.md`](do
 
 | Path | Purpose |
 |---|---|
-| `state.py` | `PendingRequest`, the request shape shared by admission and routing |
-| `experiments.py` | Runs Part 2 and T1/T2/T3, writes `results/` and `plots/` |
-| `traces/` | Seeded workload generators and the committed `.jsonl` traces |
-| `tests/` | Unit tests for every module |
-| `docs/` | Per-module reasoning and limitations |
-| `REPORT.pdf` | Write-up of the results |
+| `state.py` | shared `PendingRequest` shape |
+| `experiments.py` | runs Part 2 and T1–T3 |
+| `traces/` | workload generators and traces |
+| `tests/` | unit tests |
+| `docs/` | per-module notes |
+| `docs/questions.md` | which code answers each assignment question |
+| `REPORT.pdf` | results write-up |
 
-## Running by hand
+---
+
+## Run by hand
 
 ```bash
 export PYTHONPATH=.
 python serve.py --trace traces/mixed.jsonl --policy all
 python serve.py --trace traces/t2_shared_prefix.jsonl --seconds 100 \
     --policy drr --workers 2 --strategy all --prefix-cache
-python serve.py --trace traces/t3_stale.jsonl --seconds 120 \
-    --policy drr --workers 2 --strategy all --stale-worker w1 --stale-lag 15
 ```
 
-Flags: `--policy`, `--workers`, `--strategy` (or `all`), `--prefix-cache`,
-`--stale-worker` / `--stale-lag` / `--stale-hidden`, `--seed`, `--json`. Seeds are fixed at 7.
+Flags: `--policy`, `--workers`, `--strategy`, `--prefix-cache`,
+`--stale-worker`, `--stale-lag`, `--seed`, `--json`.
+
+---
 
 ## Known gaps
 
-- Nothing reserves capacity, so two arrivals can be admitted against the same free blocks.
+- Nothing reserves capacity.
 - `retry_after` is a placeholder.
-- Output length is always `max_new_tokens` (no end-of-sequence token).
+- Output is always `max_new_tokens` long.
 - Wasted prefill isn't counted.
