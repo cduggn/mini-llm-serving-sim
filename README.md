@@ -17,45 +17,31 @@ Python 3.11+.
 
 ## Flow
 
-`serve.py` runs this loop for every request and owns the clock. Q labels map to [`docs/questions.md`](docs/questions.md).
+`serve.py` runs this loop for every request and owns the clock.
 
-```mermaid
-flowchart TD
-    REQ(["request arrives"]) --> R
-
-    subgraph R["router.py — which worker?"]
-        direction TB
-        H6["H6 · _eligible / _is_unknown<br/>an unknown worker is never an idle one<br/><b>Q7</b>"]
-        H4["H4 · _admissible / _would_shed<br/>predict the refusal before dispatch<br/><b>Q8</b>"]
-        STRAT["_choose<br/>random · least_loaded<br/>p2c · prefix_then_load<br/><b>Q6</b>"]
-        H6 --> H4 --> STRAT
-    end
-
-    R -->|Shed| SHED503(["503 · retry_after 2.0s"])
-    R --> A
-
-    subgraph A["admit.py — should this be accepted?"]
-        direction TB
-        G12["gates 1-2 · _check_allowance<br/>tenant token + request budget<br/><b>Q4</b>"]
-        G3["gate 3 · _check_queue_wait<br/>refuse work that cannot meet its deadline<br/><b>Q1</b>"]
-        G45["gates 4-5 · _check_kv_pressure / _check_kv_capacity<br/>KV headroom, cached prefix exempt<br/><b>Q2 · Q6</b>"]
-        G6["gate 6 · _check_tail_latency<br/>shed batch, keep interactive<br/><b>Q3</b>"]
-        G12 --> G3 --> G45 --> G6
-    end
-
-    A -->|429| QUOTA(["429 · tenant over budget"])
-    A -->|503| CAP(["503 · no capacity"])
-    A --> S
-
-    subgraph S["sched.py — who gets the GPU next?"]
-        direction TB
-        SEL["_select_fcfs · _select_priority · _select_drr<br/>one prefill slot per step<br/><b>Q3 · Q4</b>"]
-        KV["_kv_room / _reclaim_blocks<br/>block accounting<br/><b>Q2</b>"]
-        PRE["_preempt · victim by _select_victim<br/>recompute, not swap<br/><b>Q5</b>"]
-        SEL --> KV --> PRE
-    end
-
-    S --> DONE(["tokens out"])
+```
+             trace (JSONL)
+                  │
+                  ▼
+        ┌───────────────────┐
+        │     router.py     │   which worker?
+        └─────────┬─────────┘
+                  │ ──── no worker would accept ────► 503
+                  ▼
+        ┌───────────────────┐
+        │     admit.py      │   accept or refuse?
+        └─────────┬─────────┘
+                  │ ──── gate fails ────► 429 / 503
+                  ▼
+        ┌───────────────────┐
+        │   worker queue    │   waiting list
+        └─────────┬─────────┘
+                  ▼
+        ┌───────────────────┐
+        │     sched.py      │   who runs this step?
+        └─────────┬─────────┘
+                  ▼
+              tokens out
 ```
 
 ---
